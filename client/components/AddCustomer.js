@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 
 class AddCustomer extends Component {
 	constructor (props) {
@@ -8,12 +10,19 @@ class AddCustomer extends Component {
 			customerName: '',
 		};
 	}
-
+	onSubmit (event) {
+		event.preventDefault();
+		this.props.mutate({
+			variables: {
+				custName: this.state.customerName,
+			},
+		});
+	}
 	render () {
 		return (
 			<div>
 				<h2>Add a customer:</h2>
-				<form>
+				<form onSubmit={this.onSubmit.bind(this)}>
 					<label>Customer Name:</label>
 					<input
 						type="text"
@@ -26,4 +35,12 @@ class AddCustomer extends Component {
 	}
 }
 
-export default AddCustomer;
+const mutation = gql`
+	mutation AddCustomer($custName: String) {
+		addCustomer(customerName: $custName) {
+			customerName
+		}
+	}
+`;
+
+export default graphql(mutation)(AddCustomer);
