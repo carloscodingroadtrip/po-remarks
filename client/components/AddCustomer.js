@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
+import query from '../queries/fetchCustomers';
 
 class AddCustomer extends Component {
 	constructor (props) {
@@ -13,11 +14,14 @@ class AddCustomer extends Component {
 	}
 	onSubmit (event) {
 		event.preventDefault();
-		this.props.mutate({
-			variables: {
-				custName: this.state.customerName,
-			},
-		});
+		this.props
+			.mutate({
+				variables: {
+					custName: this.state.customerName,
+				},
+				refetchQueries: [ { query } ],
+			})
+			.then(() => hashHistory.push('/'));
 	}
 	render () {
 		return (
