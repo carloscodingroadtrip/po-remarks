@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-
+import { Link } from 'react-router';
 class CustomerList extends Component {
 	renderCustomers () {
 		if (this.props.data.loading) {
@@ -21,7 +21,14 @@ class CustomerList extends Component {
 		}
 	}
 	render () {
-		return <div className="collection">{this.renderCustomers()}</div>;
+		return (
+			<div>
+				<div className="collection">{this.renderCustomers()}</div>
+				<Link to="customer/new" className="btn-floating btn-large red right">
+					<i className="material-icons">add</i>
+				</Link>
+			</div>
+		);
 	}
 }
 

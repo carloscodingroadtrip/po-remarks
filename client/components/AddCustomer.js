@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { Link } from 'react-router';
 
 class AddCustomer extends Component {
 	constructor (props) {
@@ -21,7 +22,8 @@ class AddCustomer extends Component {
 	render () {
 		return (
 			<div>
-				<h2>Add a customer:</h2>
+				<Link to="/">Back</Link>
+				<h2>Add a customer</h2>
 				<form onSubmit={this.onSubmit.bind(this)}>
 					<label>Customer Name:</label>
 					<input
