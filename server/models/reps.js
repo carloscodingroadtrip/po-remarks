@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const SalesRepSchema = new Schema({
-	customerName: {
+	customer: {
 		type: Schema.Types.ObjectId,
-		ref: 'customers',
+		ref: 'customer',
 	},
 	sales: { type: Number, default: 0 },
 	repName: { type: String },

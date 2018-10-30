@@ -12,22 +12,23 @@ const mutation = new GraphQLObjectType({
 		addCustomer: {
 			type: CustomerType,
 			args: {
-				customerName: { type: GraphQLString },
+				name: { type: GraphQLString },
 			},
-			resolve (parentValue, { customerName }) {
-				return new Customer({ customerName }).save();
+			resolve (parentValue, { name }) {
+				return new Customer({ name }).save();
 			},
 		},
 		addSalesRepToCustomer: {
 			type: CustomerType,
 			args: {
-				rep: { type: GraphQLString },
+				repName: { type: GraphQLString },
 				customerId: { type: GraphQLID },
 			},
-			resolve (parentValue, { rep, customerId }) {
-				return Customer.addRep(customerId, rep);
+			resolve (parentValue, { repName, customerId }) {
+				return Customer.addCustomer(customerId, repName);
 			},
 		},
+		//Add Sales to the rep
 		addSalesToRep: {
 			type: SalesRepType,
 			args: { id: { type: GraphQLID } },

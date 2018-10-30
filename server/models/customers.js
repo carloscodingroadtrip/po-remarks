@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CustomerSchema = new Schema(
 	{
-		customerName: { type: String },
+		name: { type: String },
 		user: {
 			type: Schema.Types.ObjectId,
 			ref: 'user',
 		},
-		repName: [
+		rep: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'reps',
@@ -19,18 +19,24 @@ const CustomerSchema = new Schema(
 	}
 );
 
-CustomerSchema.statics.addCustomer = function (id, repName) {
+CustomerSchema.statics.addSalesRep = function (id, repName) {
 	const SalesRep = mongoose.model('reps');
 
 	return this.findById(id).then((customer) => {
-		const reps = new SalesRep({ repName, customer });
-		customer.repName.push(reps);
-		return Promise.all([ reps.save(), customer.save() ]).then(([ reps, customers ]) => customers);
+		const representative = new SalesRep({ repName, customer });
+
+		customer.rep.push(representative);
+		console.log(customer);
+
+		return Promise.all([ representative.save(), customer.save() ]).then(([ representative, customer ]) => {
+			customer;
+			console.log(customer);
+		});
 	});
 };
 
 CustomerSchema.statics.findSalesRep = function (id) {
-	return this.findById(id).populate('repName').then((customers) => customers.repName);
+	return this.findById(id).populate('rep').then((customer) => customer.customer);
 };
 
 mongoose.model('customers', CustomerSchema);
