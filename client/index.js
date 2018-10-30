@@ -1,3 +1,4 @@
+import './style/style.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
@@ -6,6 +7,7 @@ import { ApolloProvider } from 'react-apollo';
 import CustomerList from './components/CustomerList';
 import App from './components/App';
 import AddCustomer from './components/AddCustomer';
+import RepDetails from './components/RepDetails';
 
 const client = new ApolloClient({});
 
@@ -16,6 +18,7 @@ const Root = () => {
 				<Route path="/" component={App}>
 					<IndexRoute component={CustomerList} />
 					<Route path="/customer/new" component={AddCustomer} />
+					<Route path="/customer/:id" component={RepDetails} />
 				</Route>
 			</Router>
 		</ApolloProvider>
