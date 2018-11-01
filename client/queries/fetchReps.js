@@ -8,6 +8,7 @@ export default gql`
 			reps {
 				id
 				repName
+				sales
 			}
 		}
 	}
