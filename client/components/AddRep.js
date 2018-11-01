@@ -40,8 +40,8 @@ const mutation = gql`
 	mutation AddSalesRepToCustomer($repName: String, $customerId: ID) {
 		addSalesRepToCustomer(customerId: $customerId, repName: $repName) {
 			id
-			name
 			reps {
+				id
 				repName
 			}
 		}

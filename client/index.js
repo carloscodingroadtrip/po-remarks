@@ -9,7 +9,9 @@ import App from './components/App';
 import AddCustomer from './components/AddCustomer';
 import RepDetails from './components/RepDetails';
 
-const client = new ApolloClient({});
+const client = new ApolloClient({
+	dataIdFromObject: (o) => o.id,
+});
 
 const Root = () => {
 	return (
