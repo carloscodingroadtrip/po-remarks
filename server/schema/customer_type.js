@@ -9,7 +9,7 @@ const CustomerType = new GraphQLObjectType({
 	fields: () => ({
 		id: { type: GraphQLID },
 		name: { type: GraphQLString },
-		repName: {
+		reps: {
 			type: new GraphQLList(SalesRepType),
 			resolve (parentValue) {
 				return Customer.findSalesRep(parentValue.id);
