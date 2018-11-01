@@ -4,7 +4,7 @@ export default gql`
 	{
 		customers {
 			id
-			customerName
+			name
 		}
 	}
 `;

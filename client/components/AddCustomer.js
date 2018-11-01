@@ -17,7 +17,7 @@ class AddCustomer extends Component {
 		this.props
 			.mutate({
 				variables: {
-					custName: this.state.customerName,
+					name: this.state.customerName,
 				},
 				refetchQueries: [ { query } ],
 			})
@@ -42,9 +42,9 @@ class AddCustomer extends Component {
 }
 
 const mutation = gql`
-	mutation AddCustomer($custName: String) {
-		addCustomer(customerName: $custName) {
-			customerName
+	mutation AddCustomer($name: String) {
+		addCustomer(name: $name) {
+			name
 		}
 	}
 `;

@@ -20,11 +20,11 @@ class CustomerList extends Component {
 				</div>
 			);
 		} else {
-			return this.props.data.customers.map(({ id, customerName }) => {
+			return this.props.data.customers.map(({ id, name }) => {
 				return (
 					<li href="#" key={id} className="collection-item">
 						<div>
-							{customerName}
+							{name}
 							<a href="#" className="secondary-content">
 								<div className="left">
 									<i className="material-icons" onClick={() => this.onCustomerDelete(id)}>
