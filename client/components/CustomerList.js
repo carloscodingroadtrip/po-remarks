@@ -24,7 +24,7 @@ class CustomerList extends Component {
 				return (
 					<li href="#" key={id} className="collection-item">
 						<div>
-							{name}
+							<Link to={`/customer/${id}`}>{name}</Link>
 							<a href="#" className="secondary-content">
 								<div className="left">
 									<i className="material-icons" onClick={() => this.onCustomerDelete(id)}>
