@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { graphql } from 'react-apollo';
 import fetchReps from '../queries/fetchReps';
-
+import AddRep from './AddRep';
 class RepDetails extends Component {
 	render () {
+		console.log(this.props);
 		const { customer } = this.props.data;
 		if (!customer) {
 			return (
@@ -29,6 +30,7 @@ class RepDetails extends Component {
 			<div>
 				<Link to="/">Back</Link>
 				<h3>{customer.name}s</h3>
+				<AddRep customerId={this.props.params.id} />
 			</div>
 		);
 	}
