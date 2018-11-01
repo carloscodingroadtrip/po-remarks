@@ -12,7 +12,7 @@ const SalesRepType = new GraphQLObjectType({
 		customer: {
 			type: require('./customer_type'),
 			resolve (parentValue) {
-				return SalesRep.findById(parentValue).populate('customer').then((rep) => {
+				return SalesRep.findById(parentValue).populate('customers').then((rep) => {
 					console.log(rep);
 					return rep.customer;
 				});

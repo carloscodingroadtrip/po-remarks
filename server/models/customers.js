@@ -26,20 +26,13 @@ CustomerSchema.statics.addSalesRep = function (id, repName) {
 		const representative = new SalesRep({ repName, customer });
 
 		customer.reps.push(representative);
-		// console.log('line 29 : ' + customer);
 
-		return Promise.all([ representative.save(), customer.save() ]).then(([ representative, customer ]) => {
-			customer;
-			console.log('line 34 ' + customer.reps);
-		});
+		return Promise.all([ representative.save(), customer.save() ]).then(([ representative, customer ]) => customer);
 	});
 };
 
 CustomerSchema.statics.findSalesRep = function (id) {
-	return this.findById(id).populate('reps').then((customer) => {
-		customer.reps;
-		console.log('line 42..findSalesRep:' + customer);
-	});
+	return this.findById(id).populate('reps').then((customer) => customer.reps);
 };
 
 mongoose.model('customers', CustomerSchema);
