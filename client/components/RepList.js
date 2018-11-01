@@ -16,12 +16,12 @@ class RepList extends Component {
 				<li key={id} className="collection-item">
 					{repName}
 					<div className="right-align">
-						<i onClick={() => this.onAddSales(id)} className="material-icons">
-							add_box
-						</i>
 						<span className="new badge" data-badge-caption="sales">
 							{sales}
 						</span>
+						<i onClick={() => this.onAddSales(id)} className="small material-icons">
+							add_box
+						</i>
 					</div>
 				</li>
 			);
