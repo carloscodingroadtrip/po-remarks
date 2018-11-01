@@ -5,6 +5,10 @@ export default gql`
 		customer(id: $id) {
 			id
 			name
+			reps {
+				id
+				repName
+			}
 		}
 	}
 `;
