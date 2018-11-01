@@ -21,11 +21,11 @@ const mutation = new GraphQLObjectType({
 		addSalesRepToCustomer: {
 			type: CustomerType,
 			args: {
-				repName: { type: GraphQLString },
+				salesRepName: { type: GraphQLString },
 				customerId: { type: GraphQLID },
 			},
-			resolve (parentValue, { repName, customerId }) {
-				return Customer.addCustomer(customerId, repName);
+			resolve (parentValue, { salesRepName, customerId }) {
+				return Customer.addSalesRep(customerId, salesRepName);
 			},
 		},
 		//Add Sales to the rep

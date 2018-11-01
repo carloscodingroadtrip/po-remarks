@@ -25,7 +25,7 @@ const RootQuery = new GraphQLObjectType({
 		salesRep: {
 			type: SalesRepType,
 			args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-			resolve (parnetValue, { id }) {
+			resolve (parentValue, { id }) {
 				return SalesRep.findById(id);
 			},
 		},
