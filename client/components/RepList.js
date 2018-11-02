@@ -3,10 +3,19 @@ import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 
 class RepList extends Component {
-	onAddSales (id) {
+	onAddSales (id, sales) {
 		console.log(this.props);
 		this.props.mutate({
 			variables: { id },
+			//optimistic response
+			optimisticResponse: {
+				_typename: 'Mutation',
+				addSalesToRep: {
+					id,
+					__typename: 'SalesRepType',
+					sales: sales + 1,
+				},
+			},
 		});
 	}
 
@@ -19,7 +28,7 @@ class RepList extends Component {
 						<span className="new badge" data-badge-caption="sales">
 							{sales}
 						</span>
-						<i onClick={() => this.onAddSales(id)} className="small material-icons">
+						<i onClick={() => this.onAddSales(id, sales)} className="small material-icons">
 							add_box
 						</i>
 					</div>
